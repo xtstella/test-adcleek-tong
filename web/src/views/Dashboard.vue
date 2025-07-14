@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-4">
         <div class="text-center mb-4">
-          <h4>2-Day Weather Forecast</h4>
+          <h4> Weather Forecast </h4>
           <WeatherDetails
             v-if="selectedForecast"
             :forecast="selectedForecast"
