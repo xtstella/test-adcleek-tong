@@ -11,6 +11,7 @@
       <div class="col-md-4">
         <div class="text-center mb-4">
           <h4>2-Day Weather Forecast</h4>
+          <WeatherDetails />
         </div>
       </div>
     </div>
@@ -20,6 +21,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import CityList from "../components/CityList.vue";
+import WeatherDetails from "../components/WeatherDetails.vue";
 import { getCities } from "../services/weatherApi";
 
 // Mockup data for interface test

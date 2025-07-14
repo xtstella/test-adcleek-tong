@@ -12,6 +12,7 @@
         <tr
           v-for="city in cities"
           :key="city.insee"
+          @click="select(city)"
           class="city-row text-center"
         >
           <td>{{ city.insee }}</td>
@@ -25,7 +26,11 @@
 
 <script setup>
 const props = defineProps(["cities"]);
+const emit = defineEmits(["selectCity"]);
 
+const select = (city) => {
+  emit("selectCity", city);
+};
 </script>
 
 <style scoped>
