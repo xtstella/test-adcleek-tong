@@ -7,6 +7,7 @@
           <h4>City List</h4>
         </div>
         <CityList :cities="cities" @select-city="handleSelectCity" />
+        <AddCity class="py-3" @add-city="handleAddCity" />
       </div>
       <div class="col-md-4">
         <div class="text-center mb-4">
@@ -28,6 +29,7 @@
 import { ref, onMounted } from "vue";
 import CityList from "../components/CityList.vue";
 import WeatherDetails from "../components/WeatherDetails.vue";
+import AddCity from "../components/AddCity.vue";
 import { getCities, getForecast } from "../services/weatherApi";
 
 const cities = ref([]);

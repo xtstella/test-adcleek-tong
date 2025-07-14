@@ -11,3 +11,8 @@ export const getForecast = async (insee) => {
   const response = await axios.get(`${API_BASE_URL}/forecast/${encodeURIComponent(insee)}`);
   return response.data;
 };
+
+export const addCity = async (insee) => {
+  const response = await axios.post(`${API_BASE_URL}/cities`, { insee });
+  return response.data;
+};
