@@ -5,14 +5,14 @@
 ```bash
 cd api
 npm install
-npm run dev
+npm start
 ```
 
 ### Install frontend
 ```bash
 cd web
 npm install
-npm start
+npm run dev
 ```
 
 ## Screenshot
