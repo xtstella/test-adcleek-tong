@@ -30,13 +30,6 @@ import CityList from "../components/CityList.vue";
 import WeatherDetails from "../components/WeatherDetails.vue";
 import { getCities, getForecast } from "../services/weatherApi";
 
-// Mockup data for interface test
-// const fakeCities = ref([
-//   { insee: "75056", name: "Paris", zipcode: "75000", population: 2148000 },
-//   { insee: "69001", name: "Lyon", zipcode: "69000", population: 515695 },
-//   { insee: "13055", name: "Marseille", zipcode: "13000", population: 861635 },
-// ]);
-
 const cities = ref([]);
 const selectedCity = ref(null);
 const selectedForecast = ref(null);
@@ -45,7 +38,6 @@ const fetchForecast = async () => {
   if (!selectedCity.value) return;
   try {
     selectedForecast.value = await getForecast(selectedCity.value.insee);
-    console.log(selectedForecast.value)
   } catch (error) {
     console.error("Error fetching forecast:", error);
     selectedForecast.value = null;
