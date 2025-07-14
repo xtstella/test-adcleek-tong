@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const cityRoutes = require("./routes/cityRoutes");
+const forecastRoutes = require("./routes/forecastRoutes");
 const initDb = require("./initDb");
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/cities", cityRoutes);
+app.use("/api/forecast", forecastRoutes);
 
 // Initialize DB before starting server
 initDb
@@ -22,9 +25,3 @@ initDb
   .catch((err) => {
     console.error("Failed to initialize DB", err);
   });
-  
-// db.init();
-// // exemple de requete sql à supprimer
-// db.all('select * from city').then((rows) => {
-//   console.table(rows);
-// });

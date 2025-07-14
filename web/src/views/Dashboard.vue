@@ -11,7 +11,13 @@
       <div class="col-md-4">
         <div class="text-center mb-4">
           <h4>2-Day Weather Forecast</h4>
-          <WeatherDetails />
+          <WeatherDetails
+            v-if="selectedForecast"
+            :forecast="selectedForecast"
+          />
+          <div v-else class="text-center mt-5">
+            Please select a city from the table on the left to see the forecast.
+          </div>
         </div>
       </div>
     </div>
@@ -22,7 +28,7 @@
 import { ref, onMounted } from "vue";
 import CityList from "../components/CityList.vue";
 import WeatherDetails from "../components/WeatherDetails.vue";
-import { getCities } from "../services/weatherApi";
+import { getCities, getForecast } from "../services/weatherApi";
 
 // Mockup data for interface test
 // const fakeCities = ref([
@@ -33,10 +39,27 @@ import { getCities } from "../services/weatherApi";
 
 const cities = ref([]);
 const selectedCity = ref(null);
+const selectedForecast = ref(null);
 
-const handleSelectCity= (city) => {
+const fetchForecast = async () => {
+  if (!selectedCity.value) return;
+  try {
+    selectedForecast.value = await getForecast(selectedCity.value.insee);
+  } catch (error) {
+    console.error("Error fetching forecast:", error);
+    selectedForecast.value = null;
+  }
+};
+
+const handleSelectCity = async (city) => {
   selectedCity.value = city;
-}
+  try {
+    await fetchForecast();
+  } catch (error) {
+    console.error("Error fetching forecast:", error);
+    selectedForecast.value = null;
+  }
+};
 
 onMounted(async () => {
   cities.value = await getCities();
