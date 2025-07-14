@@ -1,5 +1,4 @@
 const db = require("../database");
-const weatherService = require("../services/weatherService");
 const API_BASE_METEO_CONCEPT = "https://api.meteo-concept.com/api";
 const axios = require("axios");
 
