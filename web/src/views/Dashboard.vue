@@ -45,6 +45,7 @@ const fetchForecast = async () => {
   if (!selectedCity.value) return;
   try {
     selectedForecast.value = await getForecast(selectedCity.value.insee);
+    console.log(selectedForecast.value)
   } catch (error) {
     console.error("Error fetching forecast:", error);
     selectedForecast.value = null;
