@@ -13,8 +13,8 @@
         <div class="text-center mb-4">
           <h4> Weather Forecast </h4>
           <WeatherDetails
-            v-if="selectedForecast"
-            :forecast="selectedForecast"
+            v-if="selectedForecastDetails"
+            :forecastDetails="selectedForecastDetails"
           />
           <div v-else class="text-center mt-5">
             Please select a city from the table on the left to see the forecast.
@@ -34,15 +34,17 @@ import { getCities, getForecast } from "../services/weatherApi";
 
 const cities = ref([]);
 const selectedCity = ref(null);
-const selectedForecast = ref(null);
+const selectedForecastDetails = ref(null);
 
 const fetchForecast = async () => {
   if (!selectedCity.value) return;
   try {
-    selectedForecast.value = await getForecast(selectedCity.value.insee);
+    const result = await getForecast(selectedCity.value.insee);
+    selectedForecastDetails.value = result.details;
+    console.log(selectedForecastDetails.value)
   } catch (error) {
     console.error("Error fetching forecast:", error);
-    selectedForecast.value = null;
+    selectedForecastDetails.value = null;
   }
 };
 
